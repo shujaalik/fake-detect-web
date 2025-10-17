@@ -15,7 +15,7 @@ const config = defineConfig({
       },
       colors: {
         primary: {
-          value: "#1da1f2"
+          value: "#194de7"
         }
       },
     },

@@ -26,7 +26,11 @@ const HeroSection = () => {
             <Navbar />
             <Flex direction={"column"} textAlign={"center"} alignItems="center" pt={"10vh"}>
                 <Text fontSize="5xl" fontWeight="semibold">A fake-review detector</Text>
-                <Text fontSize="5xl" fontWeight="semibold">for <Text color="primary" textTransform={"capitalize"} fontWeight={"bold"} display="inline">
+                <Text fontSize="5xl" fontWeight="semibold">for <Text color="transparent" style={{
+                    // background: "#264FE1",
+                    WebkitBackgroundClip: "text",
+                    background: "linear-gradient(90deg,rgba(38, 79, 225, 1) 0%, rgba(190, 82, 153, 1) 50%, rgba(38, 79, 225, 1) 98%)"
+                }} textTransform={"capitalize"} fontWeight={"bold"} display="inline">
                     <TypeAnimation
                         sequence={HEADINGS}
                         repeat={Infinity}
@@ -37,13 +41,15 @@ const HeroSection = () => {
                 <Text mt="5" fontSize="">Drop a product link to instantly check if its reviews are trustworthy.</Text>
                 <Box maxW="700px" w="100%" mt="8">
                     <InputGroup
-                        backgroundColor="#2D3748"
+                        backgroundColor="#171d2b"
                         borderRadius="full"
-                        endElement={<Button mr="1" colorPalette={"cyan"} borderRadius={"full"} px="3">Analyze</Button>}
+                        endElement={<Button mr="1" backgroundColor="#194de7" _hover={{
+                            backgroundColor: "#163ed1"
+                        }} color="white" borderRadius={"full"} px="3">Analyze!</Button>}
                         startElement={<Box ml="3">
                             <LuLink />
                         </Box>}>
-                        <Input size="xl" borderRadius="full" placeholder="Paste product link here" colorPalette={"cyan"} />
+                        <Input size="xl" borderRadius="full" placeholder="Paste product link here" colorPalette={"blue"} />
                     </InputGroup>
                 </Box>
                 <Box>
@@ -59,7 +65,7 @@ const HeroSection = () => {
             width="100%"
             height="100%"
             margin="0"
-            background="radial-gradient(circle at top, #edf2f720 0%, transparent 33%)"
+            background="radial-gradient(circle at top, #edf2f70b 0%, transparent 33%)"
         />
     </>
 }

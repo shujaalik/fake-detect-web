@@ -6,7 +6,7 @@ import HowItWorksSection from "./components/custom/HowItWorksSection"
 function App() {
 
   return (
-    <Box backgroundColor="#171923" color="white" px="5">
+    <Box backgroundColor="#0f111aff" color="white" px="5">
       <HeroSection />
       <HowItWorksSection />
       <Footer />
