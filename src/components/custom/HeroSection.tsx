@@ -12,7 +12,14 @@ const HEADINGS = [
     1000,
 ]
 
-const HeroSection = () => {
+interface HeroSectionProps {
+    url: string;
+    setUrl: (url: string) => void;
+    onAnalyze: () => void;
+    loading: boolean;
+}
+
+const HeroSection = ({ url, setUrl, onAnalyze, loading }: HeroSectionProps) => {
     return <>
         <Flex
             zIndex={9}
@@ -26,14 +33,22 @@ const HeroSection = () => {
             <Navbar />
             <Flex direction={"column"} textAlign={"center"} alignItems="center" pt={"10vh"}>
                 <Text fontSize="5xl" fontWeight="semibold">A fake-review detector</Text>
-                <Text fontSize="5xl" fontWeight="semibold">for <Text color="transparent" style={{
-                    // background: "#264FE1",
-                    WebkitBackgroundClip: "text",
-                    background: "linear-gradient(90deg,rgba(38, 79, 225, 1) 0%, rgba(190, 82, 153, 1) 50%, rgba(38, 79, 225, 1) 98%)"
-                }} textTransform={"capitalize"} fontWeight={"bold"} display="inline">
+                <Text fontSize="5xl" fontWeight="semibold">for <Text
+                    as="span"
+                    style={{
+                        background: "linear-gradient(90deg, rgba(38, 79, 225, 1) 0%, rgba(190, 82, 153, 1) 50%, rgba(38, 79, 225, 1) 98%)",
+                        WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
+                        color: "transparent",
+                        display: "inline-block"
+                    }}
+                    textTransform={"capitalize"}
+                    fontWeight={"bold"}
+                >
                     <TypeAnimation
                         sequence={HEADINGS}
                         repeat={Infinity}
+                        cursor={false}
                     />
                 </Text>
                 </Text>
@@ -43,13 +58,37 @@ const HeroSection = () => {
                     <InputGroup
                         backgroundColor="#171d2b"
                         borderRadius="full"
-                        endElement={<Button mr="1" backgroundColor="#194de7" _hover={{
-                            backgroundColor: "#163ed1"
-                        }} color="white" borderRadius={"full"} px="3">Analyze!</Button>}
-                        startElement={<Box ml="3">
-                            <LuLink />
-                        </Box>}>
-                        <Input size="xl" borderRadius="full" placeholder="Paste product link here" colorPalette={"blue"} />
+                        endElement={
+                            <Button
+                                mr={1}
+                                backgroundColor="#194de7"
+                                _hover={{ backgroundColor: "#163ed1" }}
+                                color="white"
+                                borderRadius="full"
+                                px={6}
+                                onClick={onAnalyze}
+                                loading={loading}
+                            >
+                                Analyze!
+                            </Button>
+                        }
+                        startElement={
+                            <Box ml={3} color="gray.500">
+                                <LuLink />
+                            </Box>
+                        }
+                    >
+                        <Input
+                            size="xl"
+                            borderRadius="full"
+                            placeholder="Paste product link here"
+                            colorPalette={"blue"}
+                            color="white"
+                            value={url}
+                            onChange={(e) => setUrl(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && onAnalyze()}
+                            _focus={{ borderColor: "blue.500", boxShadow: "0 0 0 1px #3182ce" }}
+                        />
                     </InputGroup>
                 </Box>
                 <Box>
